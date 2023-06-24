@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener('DOMContentLoaded', function(){
+                /*
+                Because the DOM has not been loaded when the JavaScript engine parses the JavaScript in the head,
+                all the buttons do not exist yet.
+                To fix this, you place the code inside an DOMContentLoaded event handler, like this:
+                */
+
+
+                // Part 1
+                event.preventDefault();
+
+                const correctans = document.getElementById('correct1');
+                const response = document.querySelector('#response1');
+
+
+                correctans.addEventListener('click', function(e){
+                e.target.style.backgroundColor = 'green';
+                document.querySelector('#response1').innerHTML = 'Correct!';
+                });
+
+
+
+                const incorrectans = document.querySelectorAll('.incorrect');
+                /*
+                querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements
+                that match the specified group.
+                It's possible to loop over the items in a NodeList using a for loop
+                */
+                //let i = 0;
+                for (let i = 0; i < incorrectans.length; i++)
+                {
+                    incorrectans[i].addEventListener('click', function(e){
+                    e.target.style.backgroundColor = 'red';
+                    document.querySelector('#response1').innerHTML = 'Incorrect.';
+                    //console.log(i);
+
+                    })
+
+                }
+
+
+
+
+
+                // Part 2
+                let button = document.getElementById('button');
+                button.onclick = function(){
+
+                    let input = document.querySelector('#input2');
+                    let loweredinput = input.value.toLowerCase();
+                    if (input.value.toLowerCase() == 'ostrich')
+                    {
+                        input.style.backgroundColor = 'green';
+                        document.querySelector('#response2').innerHTML = 'Correct!';
+
+                    }
+                    else
+                    {
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#response2').innerHTML = 'Incorrect.';
+                    }
+
+                }
+
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <p id="response1"> </p>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What is the largest rodent on Earth?</h3>
+                <button type="button" value="answer" class="incorrect">Beaver</button>
+                <button type="button" value="answer" class="incorrect">Squirrel</button>
+                <button type="button" value="correctanswer" id="correct1">Capybara</button>
+                <button type="button" value="answer" class="incorrect">Rat</button>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <p id="response2"> </p>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3> Which land animal has the largest eyes?</h3>
+                <form>
+                    <input id="input2"type="text" autocomplete="off">
+                    <button type="button" id="button"> Check Answer </button>
+
+                    <!--button type="submit" (which is the default), results in auto-refreshing the page.-->
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
